@@ -1,0 +1,73 @@
+#!/bin/bash
+
+clear
+printf "\n
+██████╗ ██████╗  █████╗  ██████╗  ██████╗ ███╗   ██╗███████╗ ██████╗ ██████╗  ██████╗███████╗   ██╗ ██████╗ 
+██╔══██╗██╔══██╗██╔══██╗██╔════╝ ██╔═══██╗████╗  ██║██╔════╝██╔═══██╗██╔══██╗██╔════╝██╔════╝   ██║██╔═══██╗
+██║  ██║██████╔╝███████║██║  ███╗██║   ██║██╔██╗ ██║█████╗  ██║   ██║██████╔╝██║     █████╗     ██║██║   ██║
+██║  ██║██╔══██╗██╔══██║██║   ██║██║   ██║██║╚██╗██║██╔══╝  ██║   ██║██╔══██╗██║     ██╔══╝     ██║██║   ██║
+██████╔╝██║  ██║██║  ██║╚██████╔╝╚██████╔╝██║ ╚████║██║     ╚██████╔╝██║  ██║╚██████╗███████╗██╗██║╚██████╔╝
+╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═╝      ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚══════╝╚═╝╚═╝ ╚═════╝ 
+                                                                                                            \n";
+
+printf "\tult-subfinder by\033[1;32m Nxq\033[0m\n"
+printf "\n"
+
+PS3='select option [3=clear]: '
+options=("single target" "multi target" "clear" "quit")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "single target")
+            clear
+            printf "\nult-subfinder by\033[1;32m Nxq\033[0m\n"
+            printf "domain name: " i
+            read i
+            mkdir $(pwd)/$i
+            printf "\n\033[1;37mScanning \033[1;31m$i\033[0m\n"
+            subfinder -d $i -silent | httpx -silent -o $(pwd)/$i/sub_found.txt
+            printf "\n\033[1;32mScanning \033[132m$in\033[1;37m done\033[0m\n"
+            ;;
+            
+        "multi target")
+            clear
+            printf "\nult-subfinder by\033[1;32m Nxq\033[0m\n"
+            read -p "file with domain [text_file]: " input
+            while IFS= read -r in;
+            do
+                mkdir $(pwd)/$in
+                printf "\t\033[1;37m Scanning \033[1;31m$in\033[0m\n"
+                subfinder -d $in -silent | httpx -silent -o $(pwd)/$in/sub_found.txt
+                printf "\n\033[1;37mScanning \033[1;32m$in\033[1;37m done\033[0m\n"
+                done < "$input"
+            ;;
+        "clear")
+            clear
+            printf "\n
+██████╗ ██████╗  █████╗  ██████╗  ██████╗ ███╗   ██╗███████╗ ██████╗ ██████╗  ██████╗███████╗   ██╗ ██████╗ 
+██╔══██╗██╔══██╗██╔══██╗██╔════╝ ██╔═══██╗████╗  ██║██╔════╝██╔═══██╗██╔══██╗██╔════╝██╔════╝   ██║██╔═══██╗
+██║  ██║██████╔╝███████║██║  ███╗██║   ██║██╔██╗ ██║█████╗  ██║   ██║██████╔╝██║     █████╗     ██║██║   ██║
+██║  ██║██╔══██╗██╔══██║██║   ██║██║   ██║██║╚██╗██║██╔══╝  ██║   ██║██╔══██╗██║     ██╔══╝     ██║██║   ██║
+██████╔╝██║  ██║██║  ██║╚██████╔╝╚██████╔╝██║ ╚████║██║     ╚██████╔╝██║  ██║╚██████╗███████╗██╗██║╚██████╔╝
+╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝╚═╝      ╚═════╝ ╚═╝  ╚═╝ ╚═════╝╚══════╝╚═╝╚═╝ ╚═════╝ 
+                                                                                                            \n";
+            printf "\tult-subfinder by\033[1;32m Nxq\033[0m\n"
+            printf "\n"
+            printf "1) single target\n"
+            printf "2) multi target\n"
+            printf "3) clear\n"
+            printf "4) quit\n";;
+        "quit")
+            break
+            ;;
+        *)
+        clear
+        printf "\n";
+        printf "invalid option $REPLY"
+        printf "\n"
+        printf "1) single target\n"
+        printf "2) multi target\n"
+        printf "3) help\n"
+        printf "4) quit\n";;
+esac
+done
