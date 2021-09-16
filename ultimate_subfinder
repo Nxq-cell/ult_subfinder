@@ -67,7 +67,7 @@ do
         printf "\n"
         printf "1) single target\n"
         printf "2) multi target\n"
-        printf "3) help\n"
+        printf "3) clear\n"
         printf "4) quit\n";;
 esac
 done
