@@ -26,7 +26,7 @@ do
             mkdir $(pwd)/$i
             printf "\n\033[1;37mScanning \033[1;31m$i\033[0m\n"
             subfinder -d $i -silent | httpx -silent -o $(pwd)/$i/sub_found.txt
-            printf "\n\033[1;32mScanning \033[132m$in\033[1;37m done\033[0m\n"
+            printf "\n\033[1;32mScanning \033[132m$i\033[1;37m done\033[0m\n"
             ;;
             
         "multi target")
